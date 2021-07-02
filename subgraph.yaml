@@ -1,0 +1,32 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: ERC721Predicate
+    network: mainnet
+    source:
+      address: "0x9aaae29879c95eD732babaBEa4cAe20A6D931DbB"
+      abi: ERC721Predicate
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.2
+      language: wasm/assemblyscript
+      entities:
+        - LockedERC721
+        - RoleAdminChanged
+        - RoleGranted
+        - RoleRevoked
+      abis:
+        - name: ERC721Predicate
+          file: ./abis/ERC721Predicate.json
+      eventHandlers:
+        - event: LockedERC721(indexed address,indexed address,indexed address,uint256)
+          handler: handleLockedERC721
+        - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+          handler: handleRoleAdminChanged
+        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleGranted
+        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleRevoked
+      file: ./src/mapping.ts
