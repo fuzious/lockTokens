@@ -1,6 +1,87 @@
-type ExampleEntity @entity {
+type lockTokensERC20 @entity {
   id: ID!
-  count: BigInt!
+  transactionHash: String!
   depositor: Bytes! # address
   depositReceiver: Bytes! # address
+  rootToken: Bytes!
+  amount: BigInt!
+  counter: BigInt!
+}
+
+type lockTokensERC721 @entity {
+  id: ID!
+  transactionHash: String!
+  depositor: Bytes! # address
+  depositReceiver: Bytes! # address
+  rootToken: Bytes!
+  tokenId: BigInt!
+  counter: BigInt!
+}
+
+type lockTokensERC1155 @entity {
+  id: ID!
+  transactionHash: String!
+  depositor: Bytes! # address
+  depositReceiver: Bytes! # address
+  rootToken: Bytes!
+  ids: [BigInt!]!
+  amounts: [BigInt!]!
+  counter: BigInt!
+}
+
+type exitTokensERC20 @entity {
+  id: ID!
+  transactionHash: String!
+  withdrawer: Bytes!
+  rootToken: Bytes!
+  log: Bytes!
+  counter: BigInt!
+}
+
+type exitTokensERC721 @entity {
+  id: ID!
+  transactionHash: String!
+  withdrawer: Bytes!
+  rootToken: Bytes!
+  log: Bytes!
+  counter: BigInt!
+}
+
+type exitTokensERC1155 @entity {
+  id: ID!
+  transactionHash: String!
+  withdrawer: Bytes!
+  rootToken: Bytes!
+  log: Bytes!
+  counter: BigInt!
+}
+
+type lockTokensERC20Counter @entity {
+  id: ID!
+  current: BigInt!
+}
+
+type lockTokensERC721Counter @entity {
+  id: ID!
+  current: BigInt!
+}
+
+type lockTokensERC1155Counter @entity {
+  id: ID!
+  current: BigInt!
+}
+
+type exitTokensERC20Counter @entity {
+  id: ID!
+  current: BigInt!
+}
+
+type exitTokensERC721Counter @entity {
+  id: ID!
+  current: BigInt!
+}
+
+type exitTokensERC1155Counter @entity {
+  id: ID!
+  current: BigInt!
 }
